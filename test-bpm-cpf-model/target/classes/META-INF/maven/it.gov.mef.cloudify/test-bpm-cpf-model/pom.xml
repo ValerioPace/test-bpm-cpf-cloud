@@ -7,9 +7,7 @@
     <version>1.0</version>
   </parent>
 
-  <groupId>it.gov.mef.cloudify</groupId>
   <artifactId>test-bpm-cpf-model</artifactId>
-  <version>1.0</version>
   <packaging>jar</packaging>
   <name>test-bpm-cpf-model</name>
  
@@ -26,6 +24,14 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+        <groupId>org.hibernate.javax.persistence</groupId>
+        <artifactId>hibernate-jpa-2.0-api</artifactId>
+        <scope>provided</scope>       
+    </dependency>
+    
+    
   </dependencies>
 
 </project>

@@ -17,6 +17,14 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   
+  <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+  
   <dependencyManagement>
 	  <dependencies>
 		<dependency>
@@ -25,6 +33,21 @@
 		  <version>4.11</version>
 		  <scope>test</scope>
 		</dependency>
+		
+		<dependency>
+	        <groupId>org.hibernate.javax.persistence</groupId>
+	        <artifactId>hibernate-jpa-2.0-api</artifactId>
+	        <scope>provided</scope>
+	        <version>1.0.1.Final-redhat-3</version>
+   	 	</dependency>
+   	 	
+   	 	<dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+            <version>1.0.1.Final-redhat-3</version>
+        </dependency>
+		
 	  </dependencies>
   </dependencyManagement>
 
@@ -63,6 +86,47 @@
       </plugins>
     </pluginManagement>
   </build>
+  
+  <repositories>
+        <repository>
+            <id>redhat-ga-repository</id>
+            <url>http://maven.repository.redhat.com/ga/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>redhat-ea-repository</id>
+            <url>http://maven.repository.redhat.com/earlyaccess/all/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>redhat-tp-repository</id>
+            <url>http://maven.repository.redhat.com/techpreview/all</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+  
   <modules>
     <module>test-bpm-cpf-model</module>
     <module>test-bpm-cpf-processservice</module>

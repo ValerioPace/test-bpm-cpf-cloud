@@ -7,9 +7,7 @@
     <version>1.0</version>
   </parent>
 
-  <groupId>it.gov.mef.cloudify</groupId>
   <artifactId>test-bpm-cpf-client</artifactId>
-  <version>1.0</version>
   <packaging>war</packaging>
 
   <name>test-bpm-cpf-client</name>
