@@ -6,7 +6,7 @@ echo "Before assembling"
 
 M2_BIN_DIR=/opt/rh/rh-maven33/root/usr/bin
 
-. $(dirname $0)/common.sh
+. /usr/local/s2i/common.sh
 . /opt/rh/rh-maven33/enable
 
 $M2_BIN_DIR/mvn clean install -f /tmp/src/parent/pom.xml
