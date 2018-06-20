@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>test-bpm-cpf-parent</artifactId>
+    <groupId>it.gov.mef.cloudify</groupId>
+    <version>1.0</version>
+  </parent>
+
+  <artifactId>test-bpm-cpf-processservice</artifactId>
+  <packaging>jar</packaging>
+  <name>test-bpm-cpf-processservice</name>
+ 
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <org.kie.version>6.5.0.Final-redhat-7</org.kie.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-core</artifactId>
+            <scope>provided</scope>
+            <version>${org.kie.version}</version>
+    </dependency>
+    <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-api</artifactId>
+            <scope>provided</scope>
+            <version>${org.kie.version}</version>
+    </dependency>
+    <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <scope>provided</scope>
+    </dependency>
+    <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+    </dependency>
+    
+    <dependency>
+    	<artifactId>test-bpm-cpf-model</artifactId>
+    	<groupId>it.gov.mef.cloudify</groupId>
+    	<version>${project.version}</version>
+    </dependency>
+    
+  </dependencies>
+  
+  <build>
+  	<plugins>
+  	
+  		<!-- Maven Shade Plugin -->
+		<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-shade-plugin</artifactId>
+		  <version>2.3</version>
+		  <executions>
+		     <!-- Run shade goal on package phase -->
+		    <execution>
+			<phase>package</phase>
+			<goals>
+				<goal>shade</goal>
+			</goals>
+			<configuration>
+			  <transformers>
+				<!-- add Main-Class to manifest file, no need to do that -->
+				<!--  
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+					<mainClass>com.mkyong.core.utils.App</mainClass>
+					
+				</transformer>
+				-->
+			  </transformers>
+			</configuration>
+		      </execution>
+		  </executions>
+		</plugin>
+  	</plugins>
+  </build>
+
+</project>
