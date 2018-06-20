@@ -1,0 +1,9 @@
+
+After install Docker Toolbox with Docker Engine daemon condiviso tra VM ed host
+
+minishift docker-env
+
+
+docker inspect --format='{{ index .Config.Labels \"io.openshift.s2i.scripts-url\" }}' 172.30.1.1:5000/bpm/kie-app:latest
+
+Cosi da rilevare la directory nell'image Docker nella quale sono presenti gli script di assembly,run.

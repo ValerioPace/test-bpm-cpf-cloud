@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+echo "Before assembling"
+
+mvn clean install -f /tmp/src/parent/pom.xml
+
+/usr/local/s2i/assemble
