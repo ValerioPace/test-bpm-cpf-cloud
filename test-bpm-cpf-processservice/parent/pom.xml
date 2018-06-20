@@ -128,7 +128,7 @@
     </repositories>
   
   <modules>
-    <module>../../test-bpm-cpf-model</module>
-    <module>../../test-bpm-cpf-client</module>
+    <module>test-bpm-cpf-model</module>
+    <module>test-bpm-cpf-client</module>
   </modules>
 </project>
