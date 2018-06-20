@@ -17,7 +17,21 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <org.kie.version>6.5.0.Final-redhat-7</org.kie.version>
+    <version.org.drools>6.5.0.Final-redhat-7</version.org.drools>
   </properties>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.kie</groupId>
+			<artifactId>kie-bom</artifactId>
+			<version>${org.kie.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -25,14 +39,118 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>
+	    <version>2.0.2.RELEASE</version>
+	    <exclusions>
+	    	<exclusion>
+	    		<groupId>org.hibernate.validator</groupId>
+	    		<artifactId>hibernate-validator</artifactId>
+	    	</exclusion>
+	    	<exclusion>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-logging</artifactId>
+	    	</exclusion>
+	    </exclusions>
+	</dependency>
+    
+    <dependency>
+	     <groupId>org.springframework.boot</groupId>
+	     <artifactId>spring-boot-starter-log4j2</artifactId>
+	     <version>2.0.2.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>it.gov.mef.cloudify</groupId>
+	 	<artifactId>test-bpm-cpf-model</artifactId>
+    	<version>${project.version}</version>
+	</dependency>
+    
+	<dependency>
+  			<groupId>org.kie</groupId>
+			<artifactId>kie-api</artifactId>
+  	</dependency>
+  	
+  	<dependency>
+            <groupId>org.kie.server</groupId>
+            <artifactId>kie-server-api</artifactId>      
+    </dependency>
+    
+    <dependency>
+            <groupId>org.kie.server</groupId>
+            <artifactId>kie-server-client</artifactId>           
+    </dependency>
+	
+    
   </dependencies>
+  
+  <repositories>
+        <repository>
+            <id>redhat-ga-repository</id>
+            <url>http://maven.repository.redhat.com/ga/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>redhat-ea-repository</id>
+            <url>http://maven.repository.redhat.com/earlyaccess/all/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>redhat-tp-repository</id>
+            <url>http://maven.repository.redhat.com/techpreview/all</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
   <build>
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
         </plugin>
+        
+        <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <warSourceDirectory>src/main/webapp</warSourceDirectory>
+          
+          <webResources>
+            <resource>
+              <!-- this is relative to the pom.xml directory -->
+              <directory>src/main/resources</directory>
+              <targetPath>WEB-INF/classes</targetPath>
+            </resource>
+          </webResources>
+          
+          <outputDirectory>${project.build.directory}/../../deployments</outputDirectory>
+          
+        </configuration>
+      </plugin>
+        
       </plugins>
   </build>
 </project>

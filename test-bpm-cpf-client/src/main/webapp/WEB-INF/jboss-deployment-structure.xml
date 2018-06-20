@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-deployment-structure>
     <deployment>
+    	<exclude-subsystems>
+    		<subsystem name="logging"/>
+    	</exclude-subsystems>
+    
         <dependencies>
             <module name="org.hornetq"/>
             <module name="org.jboss.remote-naming"/>

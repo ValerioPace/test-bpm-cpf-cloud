@@ -7,4 +7,3 @@ it\gov\mef\cloudify\process\types\LoanResponse.class
 it\gov\mef\cloudify\process\types\Suggestion.class
 it\gov\mef\cloudify\process\types\LoanRequest.class
 it\gov\mef\cloudify\process\types\Loan.class
-it\gov\mef\cloudify\App.class

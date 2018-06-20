@@ -1,8 +1,7 @@
+it\gov\mef\cloudify\process\Library$ReturnLoan.class
 it\gov\mef\cloudify\process\Library$Init.class
 it\gov\mef\cloudify\process\Library$1.class
-it\gov\mef\cloudify\process\Library$AttemptLoan.class
-it\gov\mef\cloudify\App.class
-it\gov\mef\cloudify\process\Library$ReturnLoan.class
 it\gov\mef\cloudify\process\Library$GetFirstAvailableBooks.class
 it\gov\mef\cloudify\process\LibraryTransaction.class
+it\gov\mef\cloudify\process\Library$AttemptLoan.class
 it\gov\mef\cloudify\process\Library.class
