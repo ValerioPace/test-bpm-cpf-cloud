@@ -25,7 +25,7 @@
             "displayName": "KIE Container Deployment",
             "description": "The KIE Container deployment configuration in format: containerId=groupId:artifactId:version|c2=g2:a2:v2",
             "name": "KIE_CONTAINER_DEPLOYMENT",
-            "value": "processserver-library=it.gov.mef.cloudify:test-bpm-cpf-processservice:1.0",
+            "value": "processserver-library=org.openshift.quickstarts:processservice-library:1.4.0.Final",
             "required": false
         },
         {
@@ -118,7 +118,7 @@
             "displayName": "Git Repository URL",
             "description": "Git source URI for application",
             "name": "SOURCE_REPOSITORY_URL",
-            "value": "https://github.com/ValerioPace/test-bpm-cpf-cloud.git",
+            "value": "https://github.com/ValerioPace/processserver-library.git",
             "required": true
         },
         {
