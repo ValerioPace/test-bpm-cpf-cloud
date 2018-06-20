@@ -1,9 +1,0 @@
-it\gov\mef\cloudify\process\types\ReturnRequest.class
-it\gov\mef\cloudify\process\types\SuggestionResponse.class
-it\gov\mef\cloudify\process\types\SuggestionRequest.class
-it\gov\mef\cloudify\process\types\Book.class
-it\gov\mef\cloudify\process\types\ReturnResponse.class
-it\gov\mef\cloudify\process\types\LoanResponse.class
-it\gov\mef\cloudify\process\types\Suggestion.class
-it\gov\mef\cloudify\process\types\LoanRequest.class
-it\gov\mef\cloudify\process\types\Loan.class
