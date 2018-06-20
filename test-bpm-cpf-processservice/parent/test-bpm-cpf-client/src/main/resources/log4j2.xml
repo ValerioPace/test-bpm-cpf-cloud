@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSS} - %c{1.} %5p - %m%n" />
+         </Console>
+        <RollingFile name="file"
+            filePattern="${sys:jboss.server.base.dir}/log/test-bpm-cpf-'%d{yyyy-MM-dd}.log"
+            fileName="${sys:jboss.server.base.dir}/log/test-bpm-cpf.log" immediateFlush="true">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd'T'HH:mm:ss.SSS} - %c{1.} %5p - %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy  />
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+	    <Logger name="org.springframework" level="info" additivity="false">
+	        <AppenderRef ref="file" />
+	        <AppenderRef ref="console" />
+	    </Logger>
+	    
+	    <Logger name="it.gov.mef.cloudify" level="info" additivity="false">
+	        <AppenderRef ref="file" />
+	        <AppenderRef ref="console" />
+	    </Logger>
+	    <Root level="error">
+      		<AppenderRef ref="Console"/>
+    	</Root>
+    </Loggers>
+</Configuration>
