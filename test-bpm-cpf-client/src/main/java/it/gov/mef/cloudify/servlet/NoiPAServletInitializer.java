@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,8 @@ import it.gov.mef.cloudify.kie.bpm.BPMClient;
 import it.gov.mef.cloudify.kie.ruleengine.RuleEngineClient;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
+@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class,
+		HibernateJpaAutoConfiguration.class})
 @ComponentScan(basePackageClasses = {ServiceController.class, KieServiceManagerDelegate.class, BPMClient.class, RuleEngineClient.class})
 public class NoiPAServletInitializer extends SpringBootServletInitializer {
  

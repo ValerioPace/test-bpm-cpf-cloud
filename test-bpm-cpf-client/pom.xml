@@ -19,6 +19,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <org.kie.version>6.5.0.Final-redhat-7</org.kie.version>
     <version.org.drools>6.5.0.Final-redhat-7</version.org.drools>
+    <version.jboss.spec.javaee.6.0>3.0.2.Final-redhat-15</version.jboss.spec.javaee.6.0>
   </properties>
   
   <dependencyManagement>
@@ -30,6 +31,22 @@
 			<type>pom</type>
 			<scope>import</scope>
   		</dependency>
+  		
+  		<!-- Define the version of JBoss' Java EE 6 APIs we want to use -->
+            <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
+                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+                of artifacts. We use this here so that we always get the correct versions 
+                of artifacts. Here we use the jboss-javaee-6.0 stack (you can read this as 
+                the JBoss stack of the Java EE 6 APIs). You can actually use this stack with 
+                any version of JBoss EAP that implements Java EE 6. -->
+            <dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-6.0</artifactId>
+                <version>${version.jboss.spec.javaee.6.0}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+  		
   	</dependencies>
   </dependencyManagement>
 
@@ -82,6 +99,24 @@
             <groupId>org.kie.server</groupId>
             <artifactId>kie-server-client</artifactId>           
     </dependency>
+    
+     <!-- Import the Servlet API, we use provided scope as the API is 
+            included in JBoss EAP 6 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.jms</groupId>
+            <artifactId>jboss-jms-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	
     
   </dependencies>
