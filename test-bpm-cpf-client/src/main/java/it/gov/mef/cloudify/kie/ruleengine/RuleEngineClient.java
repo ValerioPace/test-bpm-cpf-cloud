@@ -26,6 +26,7 @@ import it.gov.mef.cloudify.process.types.SuggestionRequest;
 import it.gov.mef.cloudify.process.types.SuggestionResponse;
 
 @Component
+@Lazy
 @DependsOn("kieServiceManager")
 public class RuleEngineClient {
 

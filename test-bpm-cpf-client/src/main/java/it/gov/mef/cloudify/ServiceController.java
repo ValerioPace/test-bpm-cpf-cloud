@@ -2,6 +2,9 @@ package it.gov.mef.cloudify;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,24 +22,31 @@ import it.gov.mef.cloudify.process.types.Loan;
 import it.gov.mef.cloudify.process.types.Suggestion;
 
 @RestController
-public class ServiceController {
+public class ServiceController implements BeanFactoryAware {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
-	@Autowired
 	private BPMClient bpmClient;
-	
-	@Autowired
 	private RuleEngineClient ruleEngineClient;
+	
+	private BeanFactory beanFactory;
 	
 	@RequestMapping("/")
 	public String hello() {
 		return "L'inverno è arrivato, è un processo..";
 	}
 	
+	protected void initLazyClients() {
+		
+		bpmClient = beanFactory.getBean(BPMClient.class);
+		ruleEngineClient = beanFactory.getBean(RuleEngineClient.class);
+	}
+	
 	@RequestMapping(value = "/startProcess/acquireLoan/{isbn}", 
 			produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	public ResponseEntity<Loan> acquireLoan(@PathVariable("isbn") String isbn){
+		
+		initLazyClients();
 		
 		logger.info("invoking REST service acquireLoan, path variable: " + isbn);
 		
@@ -58,6 +68,8 @@ public class ServiceController {
 	@RequestMapping(value = "/process/returnLoan/", 
 			produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public ResponseEntity<Loan> returnLoan(@RequestBody Loan loan){
+		
+		initLazyClients();
 		
 		logger.info("invoking REST service returnLoan, loan: " + loan);
 		
@@ -88,6 +100,7 @@ public class ServiceController {
 	public ResponseEntity<Suggestion> getSuggestion(
 			@RequestParam(value="keyword", required=false) String keyword){
 		
+		initLazyClients();
 		logger.info("invoking REST service getSuggestion, request params: keyword=" + keyword);
 		
 		Suggestion suggestion = ruleEngineClient.getSuggestion(keyword);
@@ -106,5 +119,11 @@ public class ServiceController {
 			logger.error("error rule based suggestion cause ex: ", e);
 			return new ResponseEntity<Suggestion>(new Suggestion(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	@Override
+	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		this.beanFactory = beanFactory;
+		
 	}	
 }

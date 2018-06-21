@@ -13,6 +13,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.ClassPathResource;
 
 import it.gov.mef.cloudify.ServiceController;
@@ -34,7 +35,8 @@ public class NoiPAServletInitializer extends SpringBootServletInitializer {
         return ppc;
     }
     
-    @Bean(name="kieServiceManager") 
+    @Bean(name="kieServiceManager")
+    @Lazy
     KieServiceManagerDelegate kieServiceManager() {
     	
     	KieServiceManagerDelegate serviceManager = new KieServiceManagerDelegate(ServiceType.HTTPS, "https", System.getProperty("HOSTNAME"), "8443");

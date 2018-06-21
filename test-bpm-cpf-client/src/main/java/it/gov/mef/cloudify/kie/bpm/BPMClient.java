@@ -21,6 +21,7 @@ import it.gov.mef.cloudify.process.types.ReturnRequest;
 import it.gov.mef.cloudify.process.types.ReturnResponse;
 
 @Component
+@Lazy
 @DependsOn("kieServiceManager")
 public class BPMClient {
 
