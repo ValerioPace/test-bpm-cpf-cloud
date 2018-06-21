@@ -1,0 +1,1 @@
+{"book":{"id":18,"isbn":"978-1-4000-5-80-2","title":"The Zombie Survival Guide","synopsis":"Complete Protection from the Living Dead","available":true}}
