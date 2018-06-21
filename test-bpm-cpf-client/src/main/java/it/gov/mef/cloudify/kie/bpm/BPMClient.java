@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.kie.server.client.ProcessServicesClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
@@ -19,7 +21,6 @@ import it.gov.mef.cloudify.process.types.ReturnRequest;
 import it.gov.mef.cloudify.process.types.ReturnResponse;
 
 @Component
-@Lazy
 @DependsOn("kieServiceManager")
 public class BPMClient {
 
@@ -27,11 +28,15 @@ public class BPMClient {
 	private KieServiceManagerDelegate serviceManager;
 	private ProcessServicesClient processServicesClient;
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@PostConstruct
 	public void initProcessServicesClient() {
 		
 		ProcessServicesClient processServicesClient = serviceManager.getKieServicesClient().getServicesClient(ProcessServicesClient.class);
 		this.processServicesClient = processServicesClient;
+		
+		logger.info("BPM client correctly initialized");
 	}
 	
 	public Loan attemptLoan(String isbn) {

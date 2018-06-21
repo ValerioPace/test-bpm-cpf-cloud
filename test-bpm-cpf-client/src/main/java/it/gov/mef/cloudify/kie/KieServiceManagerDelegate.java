@@ -65,6 +65,9 @@ public class KieServiceManagerDelegate {
 		logger.debug("---------> host: " + host);
 		logger.debug("---------> username: " + username);
 		logger.debug("---------> password: " + password);
+		
+		logger.info("kie server manager created: protocol=" + protocol + 
+				",host=" + host + ",username=" + username + ",password=" + password);
 	}
 
 	public KieServiceManagerDelegate(ServiceType serviceType, String protocol, String host, String port,
@@ -79,11 +82,16 @@ public class KieServiceManagerDelegate {
 		logger.debug("---------> host: " + host);
 		logger.debug("---------> username: " + username);
 		logger.debug("---------> password: " + password);
+		
+		logger.info("kie server manager created: protocol=" + protocol + 
+				",host=" + host + ",username=" + username + ",password=" + password);
 	}
 
 	@PostConstruct
 	public void initLibraryConfig() {
 
+		logger.info("initializing kie server manager...");
+		
 		commands = KieServices.Factory.get().getCommands();
 		switch (serviceType) {
 		case HTTP:
@@ -107,7 +115,7 @@ public class KieServiceManagerDelegate {
 		
 		this.kiecfg.setMarshallingFormat(getMarshallingFormat());	
 		this.kieServicesClient = KieServicesFactory.newKieServicesClient(kiecfg);
-		
+		logger.info("kie server manager correctly initialized");
 	}
 	
 	@PreDestroy

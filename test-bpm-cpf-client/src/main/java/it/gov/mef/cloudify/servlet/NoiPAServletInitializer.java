@@ -15,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.ClassPathResource;
 
 import it.gov.mef.cloudify.ServiceController;
+import it.gov.mef.cloudify.ServiceType;
 import it.gov.mef.cloudify.kie.KieServiceManagerDelegate;
 import it.gov.mef.cloudify.kie.bpm.BPMClient;
 import it.gov.mef.cloudify.kie.ruleengine.RuleEngineClient;
@@ -22,7 +23,7 @@ import it.gov.mef.cloudify.kie.ruleengine.RuleEngineClient;
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class,
 		HibernateJpaAutoConfiguration.class})
-@ComponentScan(basePackageClasses = {ServiceController.class, KieServiceManagerDelegate.class, BPMClient.class, RuleEngineClient.class})
+@ComponentScan(basePackageClasses = {ServiceController.class, BPMClient.class, RuleEngineClient.class})
 public class NoiPAServletInitializer extends SpringBootServletInitializer {
  
 	 
@@ -32,6 +33,13 @@ public class NoiPAServletInitializer extends SpringBootServletInitializer {
         ppc.setLocations(new ClassPathResource("application.properties"));
         ppc.setIgnoreUnresolvablePlaceholders(true);
         return ppc;
+    }
+    
+    @Bean(name="kieServiceManager") 
+    KieServiceManagerDelegate kieServiceManager() {
+    	
+    	KieServiceManagerDelegate serviceManager = new KieServiceManagerDelegate(ServiceType.HTTPS, "https", System.getProperty("HOSTNAME"), "8443");
+        return serviceManager;
     }
    
 	

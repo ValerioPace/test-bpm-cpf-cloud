@@ -13,7 +13,8 @@ import org.kie.api.runtime.rule.QueryResults;
 import org.kie.api.runtime.rule.QueryResultsRow;
 import org.kie.server.api.model.ServiceResponse;
 import org.kie.server.client.RuleServicesClient;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
@@ -25,7 +26,6 @@ import it.gov.mef.cloudify.process.types.SuggestionRequest;
 import it.gov.mef.cloudify.process.types.SuggestionResponse;
 
 @Component
-@Lazy
 @DependsOn("kieServiceManager")
 public class RuleEngineClient {
 
@@ -34,11 +34,15 @@ public class RuleEngineClient {
 	
 	private RuleServicesClient ruleServicesClient;
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@PostConstruct
 	public void initRuleServicesClient() {
 		
 		 RuleServicesClient ruleServicesClient = serviceManager.getKieServicesClient().getServicesClient(RuleServicesClient.class);
 		 this.ruleServicesClient = ruleServicesClient;
+		 
+		 logger.info("BPM client correctly initialized");
 	}
 	
 	public Suggestion getSuggestion(String keyword) {
