@@ -31,7 +31,6 @@ import org.springframework.stereotype.Component;
 
 import it.gov.mef.cloudify.ServiceType;
 
-@Component("kieServiceManager")
 public class KieServiceManagerDelegate {
 
 	private KieCommands commands;
