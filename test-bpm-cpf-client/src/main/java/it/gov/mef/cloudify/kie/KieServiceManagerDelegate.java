@@ -94,7 +94,7 @@ public class KieServiceManagerDelegate {
 		commands = KieServices.Factory.get().getCommands();
 		switch (serviceType) {
 		case HTTP:
-			HTTPS: this.kiecfg = KieServicesFactory.newRestConfiguration(getBaseUrl(protocol, host, port), username,
+		case HTTPS: this.kiecfg = KieServicesFactory.newRestConfiguration(getBaseUrl(protocol, host, port) + "/kie-server/services/rest/server", username,
 					password);
 
 			if (ServiceType.HTTPS.equals(serviceType)) {
