@@ -83,6 +83,36 @@
 	     <version>1.5.1.RELEASE</version>
 	</dependency>
 	
+	<!-- Spring data JPA, default tomcat pool, exclude it -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>1.5.1.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+                <exclusion>             	
+		            <groupId>com.zaxxer</groupId>
+		            <artifactId>HikariCP</artifactId>
+                </exclusion>
+                <exclusion>
+			      <groupId>org.springframework.boot</groupId>
+			      <artifactId>spring-boot-starter-logging</artifactId>
+    			</exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.6</version>
+		    <scope>provided</scope>
+		</dependency>
+	
+	
 	<dependency>
 		<groupId>it.gov.mef.cloudify</groupId>
 	 	<artifactId>test-bpm-cpf-model</artifactId>
